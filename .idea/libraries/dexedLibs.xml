@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="dexedLibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/viewindicatorlibrary-2aaa63942d80058bacf81a8f93725d31.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/pull-to-refresh-3e7b733de99d363c6ed9a1700f02d005.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/google-play-services_lib-a6e63e6e2eca454d6fd180b9645b2c7b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/android-support-v4-e635c72b232ff723d4919540639e1c7c.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/quickblox-android-1.2.3-a466e5092be4bf33087db548180ca3d9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/google-play-services-f34774c86c42b2be7cb6e89a37e5dfb5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
