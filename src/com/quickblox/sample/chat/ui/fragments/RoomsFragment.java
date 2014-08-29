@@ -1,10 +1,5 @@
 package com.quickblox.sample.chat.ui.fragments;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -30,6 +25,11 @@ import com.quickblox.sample.chat.R;
 import com.quickblox.sample.chat.core.RoomChat;
 import com.quickblox.sample.chat.ui.activities.ChatActivity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class RoomsFragment extends Fragment implements RoomReceivingListener {
 
     private static final String KEY_ROOM_NAME = "roomName";
@@ -51,6 +51,9 @@ public class RoomsFragment extends Fragment implements RoomReceivingListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_rooms, container, false);
         roomsList = (ListView) v.findViewById(R.id.roomsList);
+
+        loadRooms();
+
         return v;
     }
 

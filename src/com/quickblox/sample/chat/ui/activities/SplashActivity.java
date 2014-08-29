@@ -22,6 +22,7 @@ import com.quickblox.module.users.model.QBUser;
 import com.quickblox.sample.chat.ChatManager;
 import com.quickblox.sample.chat.OSChatIteractions;
 import com.quickblox.sample.chat.R;
+import com.quickblox.sample.chat.miscellaneous.Constants;
 
 public class SplashActivity extends Activity {
 
@@ -29,9 +30,7 @@ public class SplashActivity extends Activity {
 
 	private static final int UNAUTHORIZED = 401;//nauthorized
 
-	private static final String APP_ID = "13174";
-	private static final String AUTH_KEY = "tGAmNfQOaw-ewJj";
-	private static final String AUTH_SECRET = "nqk3c6KT5DeeyE4";
+
 
 	private ProgressBar progressBar;
 	private SmackAndroid smackAndroid;
@@ -45,7 +44,7 @@ public class SplashActivity extends Activity {
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
 		user = OSChatIteractions.createQBUser();
 
-		QBSettings.getInstance().fastConfigInit(APP_ID, AUTH_KEY, AUTH_SECRET);
+		QBSettings.getInstance().fastConfigInit(Constants.APP_ID, Constants.AUTH_KEY, Constants.AUTH_SECRET);
 		QBAuth.createSession(new AuthenticationCallback(this));
 	}
 

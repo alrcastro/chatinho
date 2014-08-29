@@ -11,17 +11,23 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.quickblox.module.chat.QBChatService;
+import com.quickblox.module.chat.listeners.ChatMessageListener;
 import com.quickblox.sample.chat.R;
+import com.quickblox.sample.chat.core.ChatControl;
+import com.quickblox.sample.chat.model.ChatMessage;
 import com.quickblox.sample.chat.ui.fragments.RoomsFragment;
 import com.quickblox.sample.chat.ui.fragments.UsersFragment;
 import com.viewpagerindicator.TabPageIndicator;
 
 import org.jivesoftware.smack.ConnectionListener;
+import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smackx.packet.ChatStateExtension;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class MainChatActivity extends FragmentActivity  {
+public class MainChatActivity extends FragmentActivity implements ChatMessageListener {
 
     private static final int AUTHENTICATION_REQUEST = 1;
     private static final int POSITION_USER = 0;
@@ -48,7 +54,8 @@ public class MainChatActivity extends FragmentActivity  {
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(sectionsPagerAdapter);
- 
+
+        ChatControl.getSingleChatInstance().setMessageListener(this);
         
         TabPageIndicator indicator = (TabPageIndicator)findViewById(R.id.indicator);
         indicator.setViewPager(viewPager);
@@ -139,6 +146,45 @@ public class MainChatActivity extends FragmentActivity  {
                 Toast.makeText(MainChatActivity.this, msg, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void processMessage(Message message) {
+        try {
+
+            final String messageBody = message.getBody();
+            // Quando o cara ta digitando
+
+            Object status = message.getExtensions().toArray()[0];
+
+            //if (status.equals(COMPOSING) || status.equals(PAUSED))
+            if (status instanceof ChatStateExtension)
+                return;
+
+            // ChatStateExtension
+
+            String from = message.getFrom().split("-")[0];
+
+            ChatMessage chatMessage = new ChatMessage(messageBody, from, Calendar.getInstance().getTime(), true);
+
+            //MessageDAO mDao = MessageDAO.getInstance(chatActivity);
+            //mDao.save(chatMessage);
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+    }
+
+    @Override
+    public boolean accept(Message.Type messageType) {
+        switch (messageType) {
+            case chat:
+                return true;
+            default:
+                return false;
+        }
     }
 
     public static enum Action {CHAT, ROOM_LIST}

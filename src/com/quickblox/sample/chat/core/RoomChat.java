@@ -1,11 +1,5 @@
 package com.quickblox.sample.chat.core;
 
-import java.util.Calendar;
-import java.util.Date;
-
-import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.packet.Message;
-
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,6 +12,12 @@ import com.quickblox.module.users.model.QBUser;
 import com.quickblox.sample.chat.ChatManager;
 import com.quickblox.sample.chat.model.ChatMessage;
 import com.quickblox.sample.chat.ui.activities.ChatActivity;
+
+import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.packet.Message;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class RoomChat implements Chat, RoomListener, ChatMessageListener {
 
@@ -41,6 +41,10 @@ public class RoomChat implements Chat, RoomListener, ChatMessageListener {
                 join( ChatManager.getInstance().getCurrentRoom());
                 break;
         }
+    }
+
+    public RoomChat() {
+
     }
 
     @Override

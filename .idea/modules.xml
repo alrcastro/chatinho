@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SampleChat.iml" filepath="$PROJECT_DIR$/SampleChat.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Android-ViewPagerIndicator-master/library/library.iml" filepath="$PROJECT_DIR$/../Android-ViewPagerIndicator-master/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../android-database/project_framework/project_framework.iml" filepath="$PROJECT_DIR$/../../android-database/project_framework/project_framework.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraries/pull-to-refresh/pull-to-refresh.iml" filepath="$PROJECT_DIR$/libraries/pull-to-refresh/pull-to-refresh.iml" />
     </modules>
   </component>

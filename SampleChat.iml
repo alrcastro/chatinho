@@ -16,6 +16,16 @@
     <orderEntry type="library" name="quickblox-android-1.2.3" level="project" />
     <orderEntry type="module" module-name="pull-to-refresh" />
     <orderEntry type="module" module-name="library" />
+    <orderEntry type="module" module-name="project_framework" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://D:/adt-bundle-windows-x86-20130917/sdk/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
 

@@ -21,6 +21,7 @@ import com.quickblox.sample.chat.core.RoomChat;
 import com.quickblox.sample.chat.core.SingleChat;
 import com.quickblox.sample.chat.miscellaneous.Constants;
 import com.quickblox.sample.chat.model.ChatMessage;
+import com.quickblox.sample.chat.persistence.MessageDAO;
 import com.quickblox.sample.chat.ui.adapters.ChatAdapter;
 
 import org.jivesoftware.smack.XMPPException;
@@ -31,7 +32,8 @@ import java.util.List;
 
 public class ChatActivity extends Activity {
 
-	public static enum Mode { SINGLE, GROUP }
+    public static enum Mode {SINGLE, GROUP}
+
     public static final String EXTRA_MODE = "mode";
     private static final String TAG = ChatActivity.class.getSimpleName();
     private EditText messageEditText;
@@ -55,7 +57,7 @@ public class ChatActivity extends Activity {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-       int notificationId = getIntent().getIntExtra(Constants.notificationId, -1);
+        int notificationId = getIntent().getIntExtra(Constants.notificationId, -1);
 
         if (notificationId != -1)
             notificationManager.cancel(notificationId);
@@ -68,10 +70,20 @@ public class ChatActivity extends Activity {
     public void onBackPressed() {
         try {
             chat.release();
+
+            Intent intent = new Intent(this, MainChatActivity.class);
+
+            this.startActivity(intent);
+
         } catch (XMPPException e) {
             Log.e(TAG, "failed to release chat", e);
         }
-        super.onBackPressed();
+       // super.onBackPressed();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
     }
 
     private void initViews() {
@@ -138,12 +150,15 @@ public class ChatActivity extends Activity {
 
     private void saveMessageToHistory(ChatMessage message) {
         if (mode == Mode.SINGLE) {
-        	ChatManager.getInstance().addMessage(getIntent().getIntExtra(SingleChat.EXTRA_USER_ID, 0), message);
+            ChatManager.getInstance().addMessage(getIntent().getIntExtra(SingleChat.EXTRA_USER_ID, 0), message);
         }
     }
 
     private void restoreMessagesFromHistory(int userId) {
-        List<ChatMessage> messages = ChatManager.getInstance().getMessages(userId);
+
+        MessageDAO mDao = MessageDAO.getInstance(this);
+
+        List<ChatMessage> messages = mDao.getMessageBySenderId(String.valueOf(userId));//ChatManager.getInstance().getMessages(userId);
         if (messages != null) {
             showMessage(messages);
         }
