@@ -1,3 +1,4 @@
+// Teste para ver se funciona
 package com.quickblox.sample.chat;
 
 import java.util.ArrayList;
